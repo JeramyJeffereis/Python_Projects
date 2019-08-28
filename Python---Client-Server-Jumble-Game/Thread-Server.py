@@ -5,7 +5,7 @@ spawns a thread to handle each client connection; threads share global
 memory space with main thread; this is more portable than fork: threads
 work on standard Windows systems, but process forks do not;
 """
-import jumble
+import Jumble
 import time, _thread as thread           # or use threading.Thread().start()
 from socket import *                     # get socket constructor and constants
 myHost = ''                              # server machine, '' means local host
@@ -20,7 +20,7 @@ def now():
 
 def handleClient(connection):                    # in spawned thread: reply
     time.sleep(1)                                # simulate a blocking activity
-    jum = jumble.jumble()                        # instantiates jumble object
+    jum = Jumble.jumble()                        # instantiates jumble object
     while True:                                  # read, write a client socket
         reply = jum.give_word()                  # runs the give_word() method in jumble object,
         connection.send(reply.encode())          #  tencodes data returned and sends it to socket
